@@ -1,0 +1,13 @@
+package com.stockforum.project.repository;
+
+import com.stockforum.project.model.entity.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UserEntityRepository extends JpaRepository<UserEntity, Integer> {
+    // define method
+    Optional<UserEntity> findByUserName(String userName);
+}
