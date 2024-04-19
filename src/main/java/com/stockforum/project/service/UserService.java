@@ -5,6 +5,7 @@ import com.stockforum.project.exception.ForumApplicationException;
 import com.stockforum.project.model.User;
 import com.stockforum.project.model.entity.UserEntity;
 import com.stockforum.project.repository.UserEntityRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,16 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserEntityRepository userRepository;
+    private final BCryptPasswordEncoder encoder;
 
     public User join(String userName, String password) {
         userRepository.findByUserName(userName).ifPresent(it -> {
             throw new ForumApplicationException(ErrorCode.DUPLICATED_USER_NAME,String.format("%s is duplicated.",userName));
         });
-        UserEntity userEntity = userRepository.save(UserEntity.of(userName,password)); // register user
+
+        UserEntity userEntity = userRepository.save(UserEntity.of(userName, encoder.encode(password))); // register user
         return User.fromEntity(userEntity);
     }
 
