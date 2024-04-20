@@ -4,6 +4,7 @@ import com.stockforum.project.controller.request.UserJoinRequest;
 import com.stockforum.project.controller.request.UserLoginRequest;
 import com.stockforum.project.exception.ErrorCode;
 import com.stockforum.project.exception.ForumApplicationException;
+import com.stockforum.project.model.User;
 import com.stockforum.project.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,6 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithAnonymousUser
     public void login() throws Exception {
         String userName = "name";
         String password = "password";

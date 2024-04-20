@@ -3,6 +3,7 @@ package com.stockforum.project.service;
 
 import com.stockforum.project.exception.ErrorCode;
 import com.stockforum.project.exception.ForumApplicationException;
+import com.stockforum.project.fixture.TestInfoFixture;
 import com.stockforum.project.fixture.UserEntityFixture;
 import com.stockforum.project.repository.UserEntityRepository;
 import org.junit.jupiter.api.Assertions;
@@ -50,7 +51,6 @@ public class UserServiceTest {
         when(userEntityRepository.findByUserName(fixture.getUserName())).thenReturn(Optional.empty());
 
         Assertions.assertDoesNotThrow(() -> userService.login(fixture.getUserName(), fixture.getPassword()));
-
     }
 
     @Test
