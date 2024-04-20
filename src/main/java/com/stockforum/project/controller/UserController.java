@@ -1,8 +1,10 @@
 package com.stockforum.project.controller;
 
 import com.stockforum.project.controller.request.UserJoinRequest;
+import com.stockforum.project.controller.request.UserLoginRequest;
 import com.stockforum.project.controller.response.Response;
 import com.stockforum.project.controller.response.UserJoinResponse;
+import com.stockforum.project.controller.response.UserLoginResponse;
 import com.stockforum.project.model.User;
 import com.stockforum.project.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +22,11 @@ public class UserController {
         User user = userService.join(request.getUserName(),request.getPassword());
         return Response.success(UserJoinResponse.fromUser(user));
 
+    }
+
+    @PostMapping("/login")
+    public Response<UserLoginResponse> login(@RequestBody UserLoginRequest request) {
+        String token = userService.login(request.getUserName(), request.getPassword());
+        return Response.success(new UserLoginResponse(token));
     }
 }

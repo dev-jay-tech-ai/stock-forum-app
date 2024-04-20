@@ -17,7 +17,7 @@ public class AuthenticationConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests()
                 .requestMatchers("/api/*/users/join", "/api/*/users/login").permitAll()
-                .requestMatchers("/api/*/users/alarm/subscribe/*").permitAll()
+                // .requestMatchers("/api/*/users/alarm/subscribe/*").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and()

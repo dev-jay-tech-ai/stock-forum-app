@@ -9,7 +9,6 @@ public class ForumApplicationException extends RuntimeException {
     private ErrorCode errorCode;
     private String message;
 
-
     public ForumApplicationException(ErrorCode errorCode) {
         this.errorCode = errorCode;
         this.message = null;

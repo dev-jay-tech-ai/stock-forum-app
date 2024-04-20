@@ -1,5 +1,6 @@
 package com.stockforum.project.fixture;
 
+import com.stockforum.project.model.UserRole;
 import com.stockforum.project.model.entity.UserEntity;
 
 import java.sql.Timestamp;

@@ -2,9 +2,9 @@ package com.stockforum.project.controller;
 
 import com.stockforum.project.controller.request.UserJoinRequest;
 import com.stockforum.project.controller.request.UserLoginRequest;
+import com.stockforum.project.exception.ErrorCode;
 import com.stockforum.project.exception.ForumApplicationException;
 import com.stockforum.project.service.UserService;
-import okhttp3.internal.http2.ErrorCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
