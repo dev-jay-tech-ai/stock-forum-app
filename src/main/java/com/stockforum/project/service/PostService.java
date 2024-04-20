@@ -44,9 +44,9 @@ import java.util.Objects;
 
         @Transactional
         public Post modify(Integer userId, Integer postId, String title, String body) {
-            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
+            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new ForumApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
             if (!Objects.equals(postEntity.getUser().getId(), userId)) {
-                throw new SimpleSnsApplicationException(ErrorCode.INVALID_PERMISSION, String.format("user %s has no permission with post %d", userId, postId));
+                throw new ForumApplicationException(ErrorCode.INVALID_PERMISSION, String.format("user %s has no permission with post %d", userId, postId));
             }
 
             postEntity.setTitle(title);
@@ -57,54 +57,12 @@ import java.util.Objects;
 
         @Transactional
         public void delete(Integer userId, Integer postId) {
-            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
+            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new ForumApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
             if (!Objects.equals(postEntity.getUser().getId(), userId)) {
-                throw new SimpleSnsApplicationException(ErrorCode.INVALID_PERMISSION, String.format("user %s has no permission with post %d", userId, postId));
+                throw new ForumApplicationException(ErrorCode.INVALID_PERMISSION, String.format("user %s has no permission with post %d", userId, postId));
             }
-            likeEntityRepository.deleteAllByPost(postEntity);
-            commentEntityRepository.deleteAllByPost(postEntity);
             postEntityRepository.delete(postEntity);
         }
 
-        @Transactional
-        public void comment(Integer postId, String userName, String comment) {
-            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
-            UserEntity userEntity = userEntityRepository.findByUserName(userName)
-                    .orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("userName is %s", userName)));
-
-            commentEntityRepository.save(CommentEntity.of(comment, postEntity, userEntity));
-
-            // create alarm
-            // notificationService.send(AlarmType.NEW_COMMENT_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser());
-            alarmProducer.send(new AlarmEvent(AlarmType.NEW_COMMENT_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser().getId()));
-        }
-
-        public Page<Comment> getComments(Integer postId, Pageable pageable) {
-            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
-            return commentEntityRepository.findAllByPost(postEntity, pageable).map(Comment::fromEntity);
-        }
-
-        @Transactional
-        public void like(Integer postId, String userName) {
-            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
-            UserEntity userEntity = userEntityRepository.findByUserName(userName)
-                    .orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("userName is %s", userName)));
-
-            likeEntityRepository.findByUserAndPost(userEntity, postEntity).ifPresent(it -> {
-                throw new SimpleSnsApplicationException(ErrorCode.ALREADY_LIKED_POST, String.format("userName %s already like the post %s", userName, postId));
-            });
-
-            likeEntityRepository.save(LikeEntity.of(postEntity, userEntity));
-
-            // create alarm
-            //otificationService.send(AlarmType.NEW_LIKE_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser());
-            alarmProducer.send(new AlarmEvent(AlarmType.NEW_LIKE_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser().getId()));
-        }
-
-        public Integer getLikeCount(Integer postId) {
-            PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SimpleSnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
-            List<LikeEntity> likes = likeEntityRepository.findAllByPost(postEntity);
-            return likes.size();
-        }
 
     }
