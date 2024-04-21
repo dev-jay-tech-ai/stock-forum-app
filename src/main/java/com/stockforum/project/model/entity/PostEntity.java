@@ -1,14 +1,15 @@
 package com.stockforum.project.model.entity;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 @Setter
 @Getter
@@ -18,6 +19,7 @@ import java.time.Instant;
 @Where(clause = "removed_at is NULL")
 @NoArgsConstructor
 public class PostEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id = null;
@@ -31,14 +33,14 @@ public class PostEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
-/*
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private List<CommentEntity> comments;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
-    private List<LikeEntity> likes;*/
+    private List<LikeEntity> likes;
 
     @Column(name = "registered_at")
     private Timestamp registeredAt;

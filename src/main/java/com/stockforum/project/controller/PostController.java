@@ -1,8 +1,18 @@
 package com.stockforum.project.controller;
 
+import com.stockforum.project.controller.request.PostCommentRequest;
+import com.stockforum.project.controller.request.PostModifyRequest;
+import com.stockforum.project.controller.request.PostWriteRequest;
+import com.stockforum.project.controller.response.CommentResponse;
+import com.stockforum.project.controller.response.PostResponse;
 import com.stockforum.project.controller.response.Response;
+import com.stockforum.project.model.User;
 import com.stockforum.project.service.PostService;
+import com.stockforum.project.utils.ClassUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -44,27 +54,27 @@ public class PostController {
         return Response.success();
     }
 
-//    @GetMapping("/{postId}/comments")
-//    public Response<Page<CommentResponse>> getComments(Pageable pageable, @PathVariable Integer postId) {
-//        return Response.success(postService.getComments(postId, pageable).map(CommentResponse::fromComment));
-//    }
-//
-//    @GetMapping("/{postId}/likes")
-//    public Response<Integer> getLikes(@PathVariable Integer postId, Authentication authentication) {
-//        return Response.success(postService.getLikeCount(postId));
-//    }
+    @GetMapping("/{postId}/comments")
+    public Response<Page<CommentResponse>> getComments(Pageable pageable, @PathVariable Integer postId) {
+        return Response.success(postService.getComments(postId, pageable).map(CommentResponse::fromComment));
+    }
+
+    @GetMapping("/{postId}/likes")
+    public Response<Integer> getLikes(@PathVariable Integer postId, Authentication authentication) {
+        return Response.success(postService.getLikeCount(postId));
+    }
 
 
-//    @PostMapping("/{postId}/comments")
-//    public Response<Void> comment(@PathVariable Integer postId, @RequestBody PostCommentRequest request, Authentication authentication) {
-//        postService.comment(postId, authentication.getName(), request.getComment());
-//        return Response.success();
-//    }
-//
-//    @PostMapping("/{postId}/likes")
-//    public Response<Void> like(@PathVariable Integer postId, Authentication authentication) {
-//        postService.like(postId, authentication.getName());
-//        return Response.success();
-//    }
+    @PostMapping("/{postId}/comments")
+    public Response<Void> comment(@PathVariable Integer postId, @RequestBody PostCommentRequest request, Authentication authentication) {
+        postService.comment(postId, authentication.getName(), request.getComment());
+        return Response.success();
+    }
+
+    @PostMapping("/{postId}/likes")
+    public Response<Void> like(@PathVariable Integer postId, Authentication authentication) {
+        postService.like(postId, authentication.getName());
+        return Response.success();
+    }
 
 }

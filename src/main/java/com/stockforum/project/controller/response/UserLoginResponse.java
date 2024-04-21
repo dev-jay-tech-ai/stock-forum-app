@@ -6,6 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserLoginResponse {
-    // if login works well, return token
     private String token;
 }

@@ -28,12 +28,12 @@ spring:
     port: 6379
   jpa:
     hibernate:
-      ddl-auto: validate
+    ddl-auto: validate
     show-sql: true
 
 ---
 jwt:
-  secret-key: stock-forum.application-2024.secret_key
+  secret-key: fast-campus.simple_sns_2022_secret_key
   # 30 days
   token.expired-time-ms: 2592000000
 

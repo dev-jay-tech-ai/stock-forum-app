@@ -1,22 +1,22 @@
 package com.stockforum.project.model.entity;
 
 import com.stockforum.project.model.UserRole;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
+
 @Setter
 @Getter
 @Entity
 @Table(name = "\"user\"")
 @SQLDelete(sql = "UPDATE \"user\" SET removed_at = NOW() WHERE id=?")
-@Where(clause = "deleted_at is NULL")
+@Where(clause = "removed_at is NULL")
 @NoArgsConstructor
 public class UserEntity {
 
@@ -24,7 +24,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id = null;
 
-    @Column(name="user_name", unique = true)
+    @Column(name = "user_name", unique = true)
     private String userName;
 
     private String password;
@@ -32,14 +32,15 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.USER;
 
-    @Column(name="registered_at")
+    @Column(name = "registered_at")
     private Timestamp registeredAt;
 
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @Column(name="deleted_at")
-    private Timestamp deletedAt;
+    @Column(name = "removed_at")
+    private Timestamp removedAt;
+
 
     @PrePersist
     void registeredAt() {

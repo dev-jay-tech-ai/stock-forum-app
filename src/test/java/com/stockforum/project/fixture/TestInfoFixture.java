@@ -25,3 +25,4 @@ public class TestInfoFixture {
         private String body;
     }
 }
+

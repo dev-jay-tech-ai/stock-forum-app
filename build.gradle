@@ -12,6 +12,7 @@ version = '0.0.1-SNAPSHOT'
 java {
 	sourceCompatibility = '21'
 }
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -36,6 +37,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test:5.7.3'
 	implementation 'org.springframework.retry:spring-retry'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
@@ -50,12 +52,20 @@ dependencies {
 
 	// testcontainers
 	testImplementation 'org.testcontainers:mariadb:1.19.7'
+
+	implementation 'org.springframework.kafka:spring-kafka'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+	// hypersistence utils - hibernate 5.4.33 기준
+	implementation 'io.hypersistence:hypersistence-utils-hibernate-52:3.5.0'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.15.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
 kotlin {
 	jvmToolchain(21)
 }
-

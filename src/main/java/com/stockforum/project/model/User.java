@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,7 +38,7 @@ public class User implements UserDetails {
                 entity.getRole(),
                 entity.getRegisteredAt(),
                 entity.getUpdatedAt(),
-                entity.getDeletedAt()
+                entity.getRemovedAt()
         );
     }
 
@@ -71,3 +72,4 @@ public class User implements UserDetails {
         return removedAt == null;
     }
 }
+
