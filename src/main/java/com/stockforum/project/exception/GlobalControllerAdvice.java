@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import static com.stockforum.project.exception.ErrorCode.DATABASE_ERROR;
-
 @Slf4j
 @RestControllerAdvice
 public class GlobalControllerAdvice {
@@ -26,4 +24,3 @@ public class GlobalControllerAdvice {
                 .body(Response.error(DATABASE_ERROR.name()));
     }
 }
-

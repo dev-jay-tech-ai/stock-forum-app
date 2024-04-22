@@ -2,8 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.4'
-	id 'groovy'
-	id 'org.jetbrains.kotlin.jvm'
 }
 
 group = 'com.stock-forum'
@@ -46,26 +44,12 @@ dependencies {
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 
-	// mockWebServer
-	testImplementation('com.squareup.okhttp3:okhttp:4.10.0')
-	testImplementation('com.squareup.okhttp3:mockwebserver:4.10.0')
-
-	// testcontainers
-	testImplementation 'org.testcontainers:mariadb:1.19.7'
-
 	implementation 'org.springframework.kafka:spring-kafka'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 
-	// hypersistence utils - hibernate 5.4.33 기준
-	implementation 'io.hypersistence:hypersistence-utils-hibernate-52:3.5.0'
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.15.0'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-
-kotlin {
-	jvmToolchain(21)
 }

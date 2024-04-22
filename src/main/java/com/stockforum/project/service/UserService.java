@@ -1,11 +1,11 @@
 package com.stockforum.project.service;
 
-import com.stockforum.project.exception.ErrorCode;
 import com.stockforum.project.exception.SimpleSnsApplicationException;
+import com.stockforum.project.exception.ErrorCode;
 import com.stockforum.project.model.User;
 import com.stockforum.project.model.entity.UserEntity;
-import com.stockforum.project.repository.UserCacheRepository;
 import com.stockforum.project.repository.UserEntityRepository;
+import com.stockforum.project.repository.UserCacheRepository;
 import com.stockforum.project.utils.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,14 +23,11 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
     private final UserCacheRepository redisRepository;
 
-
-
     @Value("${jwt.secret-key}")
     private String secretKey;
 
     @Value("${jwt.token.expired-time-ms}")
     private Long expiredTimeMs;
-
 
     public User loadUserByUsername(String userName) throws UsernameNotFoundException {
         return redisRepository.getUser(userName).orElseGet(
@@ -47,7 +44,6 @@ public class UserService {
         }
         return JwtTokenUtils.generateAccessToken(userName, secretKey, expiredTimeMs);
     }
-
 
     @Transactional
     public User join(String userName, String password) {
