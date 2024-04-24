@@ -28,8 +28,8 @@ spring:
     port: 6379
   jpa:
     hibernate:
-      show-sql: true
-    ddl-auto: create
+      ddl-auto: create
+    show-sql: true
   kafka:
     consumer:
       bootstrap-servers: localhost:9092

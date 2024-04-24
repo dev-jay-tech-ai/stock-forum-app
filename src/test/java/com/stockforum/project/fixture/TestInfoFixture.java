@@ -3,7 +3,6 @@ package com.stockforum.project.fixture;
 import lombok.Data;
 
 public class TestInfoFixture {
-
     public static TestInfo get() {
         TestInfo info = new TestInfo();
         info.setPostId(1);
@@ -25,4 +24,3 @@ public class TestInfoFixture {
         private String body;
     }
 }
-

@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-    // private final AlarmService alarmService;
 
     @PostMapping("/join")
     public Response<UserJoinResponse> join(@RequestBody UserJoinRequest request) {
+        System.out.println(request.getName());
+        System.out.println(request.getPassword());
         return Response.success(UserJoinResponse.fromUser(userService.join(request.getName(), request.getPassword())));
     }
 
