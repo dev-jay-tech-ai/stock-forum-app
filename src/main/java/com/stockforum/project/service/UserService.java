@@ -50,9 +50,6 @@ public class UserService {
         userRepository.findByUserName(userName).ifPresent(it -> {
             throw new SimpleSnsApplicationException(ErrorCode.DUPLICATED_USER_NAME, String.format("userName is %s", userName));
         });
-        System.out.println("UserService 지점");
-        System.out.println(userName);
-        System.out.println(password);
         UserEntity savedUser = userRepository.save(UserEntity.of(userName, encoder.encode(password)));
         return User.fromEntity(savedUser);
     }

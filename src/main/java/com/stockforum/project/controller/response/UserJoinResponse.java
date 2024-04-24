@@ -12,8 +12,6 @@ class UserJoinResponse {
     private String name;
 
     public static UserJoinResponse fromUser(User user) {
-        System.out.println("UserJoinReponse 지점");
-        System.out.println(user.getUsername());
         return new UserJoinResponse(
                 user.getId(),
                 user.getUsername()

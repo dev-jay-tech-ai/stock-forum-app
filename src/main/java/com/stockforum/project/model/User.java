@@ -28,7 +28,6 @@ public class User implements UserDetails {
     private Timestamp updatedAt;
     private Timestamp removedAt;
 
-
     public static User fromEntity(UserEntity entity) {
         return new User(
                 entity.getId(),

@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "\"post\"")
-@SQLDelete(sql = "UPDATE \"post\" SET removed_at = NOW() WHERE id=?")
+@SQLDelete(sql = "UPDATE post SET removed_at = NOW() WHERE id=?")
 @Where(clause = "removed_at is NULL")
 @NoArgsConstructor
 public class PostEntity {
