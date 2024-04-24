@@ -22,6 +22,7 @@ public class UserController {
 
     @PostMapping("/join")
     public Response<UserJoinResponse> join(@RequestBody UserJoinRequest request) {
+        System.out.println("User Contoller 지점");
         System.out.println(request.getName());
         System.out.println(request.getPassword());
         return Response.success(UserJoinResponse.fromUser(userService.join(request.getName(), request.getPassword())));
