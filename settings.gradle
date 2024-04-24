@@ -1,1 +1,5 @@
 rootProject.name = 'project'
+
+include 'user-service'
+include 'activity-service'
+include 'news-feed-service'
