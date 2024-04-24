@@ -1,10 +1,10 @@
 package com.stockforum.project.controller.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class PostWriteRequest {
     private String title;
     private String body;
