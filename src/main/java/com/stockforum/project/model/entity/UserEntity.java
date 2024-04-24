@@ -54,8 +54,6 @@ public class UserEntity {
 
     public static UserEntity of(String userName, String encodedPwd) {
         UserEntity entity = new UserEntity();
-        entity.setUserName(userName);
-        entity.setPassword(encodedPwd);
         return entity;
     }
 }
