@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
 

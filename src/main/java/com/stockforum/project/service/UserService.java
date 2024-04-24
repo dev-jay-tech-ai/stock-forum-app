@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserEntityRepository userRepository;
-    // private final AlarmEntityRepository alarmEntityRepository;
     private final BCryptPasswordEncoder encoder;
     private final UserCacheRepository redisRepository;
 
@@ -55,10 +54,4 @@ public class UserService {
         UserEntity savedUser = userRepository.save(UserEntity.of(userName, encoder.encode(password)));
         return User.fromEntity(savedUser);
     }
-
-//    @Transactional
-//    public Page<Alarm> alarmList(Integer userId, Pageable pageable) {
-//        return alarmEntityRepository.findAllByUserId(userId, pageable).map(Alarm::fromEntity);
-//    }
-
 }

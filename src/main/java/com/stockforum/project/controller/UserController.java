@@ -37,16 +37,4 @@ public class UserController {
         return Response.success(UserJoinResponse.fromUser(userService.loadUserByUsername(authentication.getName())));
     }
 
-//    @GetMapping("/alarm")
-//    public Response<Page<AlarmResponse>> alarm(Pageable pageable, Authentication authentication) {
-//        User user = ClassUtils.getSafeCastInstance(authentication.getPrincipal(), User.class);
-//        return Response.success(userService.alarmList(user.getId(), pageable).map(AlarmResponse::fromAlarm));
-//    }
-
-//    @GetMapping(value = "/alarm/subscribe")
-//    public SseEmitter subscribe(Authentication authentication) {
-//        log.info("subscribe");
-//        User user = ClassUtils.getSafeCastInstance(authentication.getPrincipal(), User.class);
-//        return alarmService.connectNotification(user.getId());
-//    }
 }
