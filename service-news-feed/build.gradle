@@ -1,0 +1,28 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
+}
+
+group = 'dev.be'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation project(':service-user')
+	implementation project(':service-activity')
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
