@@ -1,0 +1,24 @@
+version: "3.8"                                          # 파일 규격 버전
+services:                                               # 이 항목 밑에 실행하려는 컨테이너들을 정의
+  service-user-redis:                        # 서비스명
+    container_name: service-user-redis       # 컨테이너 명
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    image: zcx5674/service-user-redis
+    ports:
+      - "6379:6379"
+  service-user-database:
+    container_name: service-user-database
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    image: zcx5674/service-user-database
+    environment:
+      - MARIADB_DATABASE=service-user
+      - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./database/config:/etc/mysql/conf.d
+      - ./database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"

@@ -1,21 +1,21 @@
 version: "3.8"                                          # 파일 규격 버전
 services:                                               # 이 항목 밑에 실행하려는 컨테이너들을 정의
-  stock-forum-redis:                        # 서비스명
-    container_name: stock-forum-redis       # 컨테이너 명
+  service-activity-redis:                        # 서비스명
+    container_name: service-activity-redis       # 컨테이너 명
     build:
       dockerfile: Dockerfile
       context: ./redis
-    image: zcx5674/stock-forum-redis
+    image: zcx5674/service-activity-redis
     ports:
       - "6379:6379"
-  stock-forum-database:
-    container_name: stock-forum-database
+  service-activity-database:
+    container_name: service-activity-database
     build:
       dockerfile: Dockerfile
       context: ./database
-    image: zcx5674/stock-forum-database
+    image: zcx5674/service-activity-database
     environment:
-      - MARIADB_DATABASE=stock-forum
+      - MARIADB_DATABASE=service-activity
       - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
     volumes:
       - ./database/config:/etc/mysql/conf.d
