@@ -1,3 +1,3 @@
-FROM mariadb:10
+FROM mongo:latest
 
 ENV TZ=Europe/London

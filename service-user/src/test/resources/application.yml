@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:mariadb:10:///stock-forum
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+---
+
+jwt:
+  secret-key: fast-campus.simple_sns_2022_secret_key
+  token.expired-time-ms: 2592000000

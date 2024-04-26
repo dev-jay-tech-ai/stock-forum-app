@@ -1,8 +1,7 @@
-package com.stockforum.project.fixture;
+package dev.be.serviceuser.fixture;
 
-import com.stockforum.project.model.UserRole;
-import com.stockforum.project.model.entity.UserEntity;
-
+import dev.be.serviceuser.model.UserRole;
+import dev.be.serviceuser.model.entity.UserEntity;
 import java.sql.Timestamp;
 import java.time.Instant;
 

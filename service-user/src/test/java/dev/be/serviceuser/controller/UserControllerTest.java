@@ -1,13 +1,13 @@
-package com.stockforum.project.controller;
+package dev.be.serviceuser.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stockforum.project.AbstractIntegrationContainerBaseTest;
-import com.stockforum.project.controller.request.UserJoinRequest;
-import com.stockforum.project.controller.request.UserLoginRequest;
-import com.stockforum.project.exception.ErrorCode;
-import com.stockforum.project.exception.SimpleSnsApplicationException;
-import com.stockforum.project.model.User;
-import com.stockforum.project.service.UserService;
+import dev.be.serviceuser.AbstractIntegrationContainerBaseTest;
+import dev.be.serviceuser.controller.request.UserJoinRequest;
+import dev.be.serviceuser.controller.request.UserLoginRequest;
+import dev.be.serviceuser.exception.ErrorCode;
+import dev.be.serviceuser.exception.SimpleSnsApplicationException;
+import dev.be.serviceuser.model.User;
+import dev.be.serviceuser.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

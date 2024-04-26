@@ -1,11 +1,11 @@
-package com.stockforum.project.service;
+package dev.be.serviceuser.service;
 
-import com.stockforum.project.AbstractIntegrationContainerBaseTest;
-import com.stockforum.project.exception.ErrorCode;
-import com.stockforum.project.exception.SimpleSnsApplicationException;
-import com.stockforum.project.fixture.TestInfoFixture;
-import com.stockforum.project.fixture.UserEntityFixture;
-import com.stockforum.project.repository.UserEntityRepository;
+import dev.be.serviceuser.AbstractIntegrationContainerBaseTest;
+import dev.be.serviceuser.exception.ErrorCode;
+import dev.be.serviceuser.exception.SimpleSnsApplicationException;
+import dev.be.serviceuser.fixture.TestInfoFixture;
+import dev.be.serviceuser.fixture.UserEntityFixture;
+import dev.be.serviceuser.repository.UserEntityRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.stockforum.project;
+package dev.be.serviceuser;
 
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;

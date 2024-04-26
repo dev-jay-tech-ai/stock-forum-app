@@ -1,4 +1,4 @@
-package com.stockforum.project.fixture;
+package dev.be.serviceuser.fixture;
 
 import lombok.Data;
 
