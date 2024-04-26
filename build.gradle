@@ -53,6 +53,9 @@ dependencies {
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5'
+
+	implementation platform('org.testcontainers:testcontainers-bom:1.19.7') //import bom
+	testImplementation('org.testcontainers:mysql') //no version specified
 }
 
 tasks.named('test') {

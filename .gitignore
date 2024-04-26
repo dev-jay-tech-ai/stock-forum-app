@@ -178,3 +178,5 @@ $RECYCLE.BIN/
 
 ###
 .env
+
+!**/src/main/resources/application.yml
