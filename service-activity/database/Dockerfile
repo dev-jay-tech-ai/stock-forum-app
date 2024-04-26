@@ -1,3 +1,3 @@
-FROM mariadb:10
+FROM mysql:8.0
 
 ENV TZ=Europe/London

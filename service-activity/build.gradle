@@ -27,7 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     annotationProcessor 'org.projectlombok:lombok'
@@ -36,9 +36,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test:5.7.3'
     implementation 'org.springframework.retry:spring-retry'
-
-    // testcontainers
-    testImplementation 'org.testcontainers:mariadb:1.17.1'
 
     // jjwt
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
@@ -50,8 +47,8 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5'
 
-    implementation project(':service-user')
-    implementation project(':service-news-feed')
+    // implementation project(':service-user')
+    // implementation project(':service-news-feed')
 }
 
 tasks.named('test') {
