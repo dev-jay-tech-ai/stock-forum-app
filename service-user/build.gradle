@@ -57,6 +57,8 @@ dependencies {
     implementation 'javax.mail:javax.mail-api'
     implementation group: 'com.sun.mail', name: 'javax.mail'
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
     // implementation project(':service-activity')
     // implementation project(':service-news-feed')
 }

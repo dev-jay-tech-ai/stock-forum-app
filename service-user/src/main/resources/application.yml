@@ -15,6 +15,8 @@ spring:
 
 ---
 spring:
+  application:
+    name: server-user
   config:
     activate:
       on-profile: local
@@ -65,3 +67,6 @@ mail:
         writetimeout: 5000
 
   auth-code-expiration-millis: 1800000  # 30 * 60 * 1000 == 30분
+
+server:
+  port: 0
