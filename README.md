@@ -18,4 +18,6 @@ MariaDB
 Testcontainers   
 Microservice Architecture   
 Json Web Token   
-HTTP Request / Response     
+HTTP Request / Response 
+Spring Cloud Netflix Eureka
+Spring Cloud Gateway
