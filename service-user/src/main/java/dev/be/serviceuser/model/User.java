@@ -21,21 +21,35 @@ import java.util.List;
 public class User implements UserDetails {
     private Integer id;
     private String username;
+    private String firstname;
+    private String lastname;
+    private String email;
     private String password;
+//    private List<FollowEntity> followers;
+//    private List<FollowEntity> followings;
     private UserRole role;
     private Timestamp registeredAt;
     private Timestamp updatedAt;
     private Timestamp removedAt;
+    private Boolean locked;
+    private Boolean enabled;
 
     public static User fromEntity(UserEntity entity) {
         return new User(
                 entity.getId(),
                 entity.getUserName(),
+                entity.getFirstName(),
+                entity.getLastName(),
+                entity.getEmail(),
                 entity.getPassword(),
+//                entity.getFollowers(),
+//                entity.getFollowings(),
                 entity.getRole(),
                 entity.getRegisteredAt(),
                 entity.getUpdatedAt(),
-                entity.getRemovedAt()
+                entity.getRemovedAt(),
+                entity.getLocked(),
+                entity.getEnabled()
         );
     }
 
@@ -69,3 +83,4 @@ public class User implements UserDetails {
         return removedAt == null;
     }
 }
+

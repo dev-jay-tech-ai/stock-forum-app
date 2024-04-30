@@ -6,16 +6,13 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest
-@Testcontainers
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("Test")
+@ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class ServiceUserApplicationTests {
-    @Test
-    void contextLoads() {
-    }
-
+	@Test
+	void contextLoads() {
+	}
 }

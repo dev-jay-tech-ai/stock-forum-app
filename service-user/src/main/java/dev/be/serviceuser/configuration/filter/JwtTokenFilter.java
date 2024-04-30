@@ -23,10 +23,9 @@ import java.util.List;
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final UserService userService;
-
     private final String secretKey;
-
     private final static List<String> TOKEN_IN_PARAM_URLS = List.of("/api/v1/users/alarm/subscribe");
+    private final static List<String> EMAIL_VERIFICATION = List.of("/api/v1/email/verification");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -36,6 +35,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String token;
         try {
+            if (EMAIL_VERIFICATION.contains(request.getRequestURI())) {
+                chain.doFilter(request, response);
+                return;
+            }
             if (TOKEN_IN_PARAM_URLS.contains(request.getRequestURI())) {
                 log.info("Request with {} check the query param", request.getRequestURI());
                 token = request.getQueryString().split("=")[1].trim();
@@ -66,6 +69,5 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         }
 
         chain.doFilter(request, response);
-
     }
 }

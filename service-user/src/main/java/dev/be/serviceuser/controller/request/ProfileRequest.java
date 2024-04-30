@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLoginRequest {
-    private String userName;
-    private String password;
+public class ProfileRequest {
+    private String profileImgUrl;
+    private String description;
 }

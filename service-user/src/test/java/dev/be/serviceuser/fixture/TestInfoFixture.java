@@ -8,6 +8,9 @@ public class TestInfoFixture {
         info.setPostId(1);
         info.setUserId(1);
         info.setUserName("name");
+        info.setFirstName("firstname");
+        info.setLastName("lastname");
+        info.setEmail("email");
         info.setPassword("password");
         info.setTitle("title");
         info.setBody("body");
@@ -19,6 +22,9 @@ public class TestInfoFixture {
         private Integer postId;
         private Integer userId;
         private String userName;
+        private String firstName;
+        private String lastName;
+        private String email;
         private String password;
         private String title;
         private String body;

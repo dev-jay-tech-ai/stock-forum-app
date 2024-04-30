@@ -1,15 +1,22 @@
 package dev.be.serviceuser.utils;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 
 public class JwtTokenUtils {
+    private static String secretKey;
+    @Value("${jwt.secret-key}")
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
 
     public static Boolean validate(String token, String userName, String key) {
         String usernameByToken = getUsername(token, key);
@@ -52,5 +59,31 @@ public class JwtTokenUtils {
                 .setExpiration(new Date(System.currentTimeMillis() + expireTime))
                 .signWith(getSigningKey(key), SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    //JWT 토큰의 만료시간
+    public static Long getExpiration(String accessToken) {
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(secretKey.getBytes())
+                    .build()
+                    .parseClaimsJws(accessToken)
+                    .getBody();
+
+            Date expiration = claims.getExpiration();
+            if (expiration == null) {
+                throw new RuntimeException("Token expiration is not defined");
+            }
+
+            long now = System.currentTimeMillis();
+            long expirationTime = expiration.getTime();
+            if (expirationTime <= now) {
+                return 0L; // Token already expired
+            }
+
+            return expirationTime - now;
+        } catch (JwtException e) {
+            throw new RuntimeException("Invalid token: " + e.getMessage());
+        }
     }
 }

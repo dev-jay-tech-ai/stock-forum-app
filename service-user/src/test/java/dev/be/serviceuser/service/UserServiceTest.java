@@ -1,6 +1,5 @@
 package dev.be.serviceuser.service;
 
-import dev.be.serviceuser.AbstractIntegrationContainerBaseTest;
 import dev.be.serviceuser.exception.ErrorCode;
 import dev.be.serviceuser.exception.SimpleSnsApplicationException;
 import dev.be.serviceuser.fixture.TestInfoFixture;
@@ -19,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class UserServiceTest extends AbstractIntegrationContainerBaseTest {
+public class UserServiceTest {
 
     @Autowired
     UserService userService;
@@ -33,8 +32,11 @@ public class UserServiceTest extends AbstractIntegrationContainerBaseTest {
     @Test
     void 로그인이_정상동작한다() {
         TestInfoFixture.TestInfo fixture = TestInfoFixture.get();
+
         when(userEntityRepository.findByUserName(fixture.getUserName())).thenReturn(Optional.empty());
+
         Assertions.assertDoesNotThrow(() -> userService.login(fixture.getUserName(), fixture.getPassword()));
+
     }
 
     @Test
@@ -53,7 +55,7 @@ public class UserServiceTest extends AbstractIntegrationContainerBaseTest {
     void 로그인시_패스워드가_다르면_에러를_내뱉는다() {
         TestInfoFixture.TestInfo fixture = TestInfoFixture.get();
 
-        when(userEntityRepository.findByUserName(fixture.getUserName())).thenReturn(Optional.of(UserEntityFixture.get(fixture.getUserName(), "password1")));
+        when(userEntityRepository.findByUserName(fixture.getUserName())).thenReturn(Optional.of(UserEntityFixture.get(fixture.getUserName(),fixture.getFirstName(), fixture.getLastName(), fixture.getEmail(), "password1")));
         when(bCryptPasswordEncoder.matches(fixture.getPassword(), "password1")).thenReturn(false);
 
         SimpleSnsApplicationException exception = Assertions.assertThrows(SimpleSnsApplicationException.class
@@ -66,11 +68,11 @@ public class UserServiceTest extends AbstractIntegrationContainerBaseTest {
     void 회원가입이_정상동작한다() {
         TestInfoFixture.TestInfo fixture = TestInfoFixture.get();
 
-        when(userEntityRepository.findByUserName(fixture.getUserName())).thenReturn(Optional.of(UserEntityFixture.get(fixture.getUserName(), fixture.getPassword())));
+        when(userEntityRepository.findByUserName(fixture.getUserName())).thenReturn(Optional.of(UserEntityFixture.get(fixture.getUserName(), fixture.getFirstName(), fixture.getLastName(), fixture.getEmail(),fixture.getPassword())));
         when(bCryptPasswordEncoder.encode(fixture.getPassword())).thenReturn("password_encrypt");
-        when(userEntityRepository.save(any())).thenReturn(Optional.of(UserEntityFixture.get(fixture.getUserName(), "password_encrypt")));
+        when(userEntityRepository.save(any())).thenReturn(Optional.of(UserEntityFixture.get(fixture.getUserName(), fixture.getFirstName(),fixture.getLastName(),fixture.getEmail(),"password_encrypt")));
 
-        Assertions.assertDoesNotThrow(() -> userService.join(fixture.getUserName(), fixture.getPassword()));
+        Assertions.assertDoesNotThrow(() -> userService.join(fixture.getUserName(),fixture.getFirstName(),fixture.getLastName(),fixture.getEmail(), fixture.getPassword()));
     }
 
 
@@ -79,10 +81,10 @@ public class UserServiceTest extends AbstractIntegrationContainerBaseTest {
         TestInfoFixture.TestInfo fixture = TestInfoFixture.get();
 
         when(userEntityRepository.findByUserName(fixture.getUserName()))
-                .thenReturn(Optional.of(UserEntityFixture.get(fixture.getUserName(), fixture.getPassword())));
+                .thenReturn(Optional.of(UserEntityFixture.get(UserEntityFixture.get(fixture.getUserName(), fixture.getFirstName(), fixture.getLastName(), fixture.getEmail(),fixture.getPassword());
 
         SimpleSnsApplicationException exception = Assertions.assertThrows(SimpleSnsApplicationException.class,
-                () -> userService.join(fixture.getUserName(), fixture.getPassword()));
+                () -> userService.join(UserEntityFixture.get(fixture.getUserName(), fixture.getFirstName(), fixture.getLastName(), fixture.getEmail(),fixture.getPassword());
 
         Assertions.assertEquals(ErrorCode.DUPLICATED_USER_NAME, exception.getErrorCode());
     }

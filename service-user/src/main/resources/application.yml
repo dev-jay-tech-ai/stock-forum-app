@@ -6,6 +6,7 @@ spring:
         - common
       prod:
         - common
+
 ---
 spring:
   config:
@@ -27,7 +28,7 @@ spring:
     port: 6379
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     show-sql: true
   kafka:
     consumer:
@@ -47,6 +48,20 @@ jwt:
   token.expired-time-ms: 2592000000
 
 ---
+mail:
+  host: smtp.gmail.com
+  port: 587
+  username: devjaytechai@gmail.com
+  password: wdzv cpun kplh gkoy
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: true
+        connectiontimeout: 5000
+        timeout: 5000
+        writetimeout: 5000
 
-server:
-  port: 8080
+  auth-code-expiration-millis: 1800000  # 30 * 60 * 1000 == 30분
