@@ -14,10 +14,12 @@ Github
 Docker   
 Redis   
 Kafka   
-MariaDB   
+MariaDB    
+MongoDB    
+RabbitMQ   
 Testcontainers   
 Microservice Architecture   
 Json Web Token   
-HTTP Request / Response 
-Spring Cloud Netflix Eureka
-Spring Cloud Gateway
+HTTP Request / Response   
+Spring Cloud Netflix Eureka   
+Spring Cloud Gateway   
