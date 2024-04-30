@@ -1,5 +1,5 @@
 rootProject.name = 'project'
 
 include 'service-user'
-//include 'service-activity'
+include 'service-activity'
 include 'service-news-feed'

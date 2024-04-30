@@ -4,66 +4,68 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.4'
 }
 
-group = 'com.stock-forum'
-version = '0.0.1-SNAPSHOT'
-
-java {
-	sourceCompatibility = '17'
-}
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
-bootJar {
-	archiveFileName = 'app.jar'
-}
-
 repositories {
 	mavenCentral()
 }
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+subprojects {
+	group = 'com.stock-forum'
+	version = '0.0.1-SNAPSHOT'
 
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	java {
+		sourceCompatibility = '17'
+	}
 
-	annotationProcessor 'org.projectlombok:lombok'
-	testCompileOnly 'org.projectlombok:lombok'
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java-test-fixtures'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test:5.7.3'
-	implementation 'org.springframework.retry:spring-retry'
+	repositories {
+		mavenCentral()
+	}
 
-	// testcontainers
-	testImplementation 'org.testcontainers:mariadb:1.17.1'
+	ext {
+		set('springCloudVersion', "2023.0.0")
+	}
 
-	// jjwt
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
 
-	implementation 'org.springframework.kafka:spring-kafka'
-	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	bootJar {
+		archiveFileName = 'app.jar'
+	}
 
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5'
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
 
-	implementation platform('org.testcontainers:testcontainers-bom:1.19.7') //import bom
-	testImplementation('org.testcontainers:mysql') //no version specified
+	processTestResources {
+		filesMatching('**/application.yml') {
+			expand(project.properties)
+		}
+	}
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+project(':service-user') {
+	dependencies {
+		// implementation(testFixtures(project(":shboard-common")))
+	}
 }
 
-processTestResources {
-	filesMatching('**/application.yml') {
-		expand(project.properties)
+project(':service-activity') {
+	dependencies {
+		implementation project(':service-user')
+		// implementation(testFixtures(project(":shboard-common")))
+	}
+}
+
+project(':service-news-feed') {
+	dependencies {
+		implementation project(':service-activity')
+		// implementation(testFixtures(project(":shboard-common")))
 	}
 }

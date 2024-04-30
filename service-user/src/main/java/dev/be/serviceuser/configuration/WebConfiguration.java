@@ -17,7 +17,6 @@ import java.util.List;
 @Slf4j
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         ResourceResolver resolver = new ReactResourceResolver();
@@ -33,7 +32,6 @@ public class WebConfiguration implements WebMvcConfigurer {
 
         private Resource index = new ClassPathResource(REACT_DIR + "index.html");
         private List<String> staticExtension = Arrays.asList("png", "jpg", "io", "json", "js", "html");
-
         private Resource resolve(String requestPath) {
             log.info(requestPath);
             if (requestPath == null) {
