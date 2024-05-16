@@ -2,10 +2,42 @@
 Developing a bulletin board service with stock discussion rooms for each financial sector, operating on a social media platform.    
 The project involves transitioning from a monolithic architecture to a microservices approach.
 
+<br>
+
+## Introduce.
+
+The stock forum app serves as a platform where users can share stock information, exchange feedback, and browse current stock situations. Through real-time updates and reviews presented in a social media format, users can make well-informed purchasing decisions.
+
+<br>
+
+## Process.
+
+https://trello.com/invite/b/yhpSXVVD/ATTI8c6ff83e1049d11d22e29c533c4a413aF23844DF/⚓️-project
+
+<br>
+
+## ERD.
+
+<br>
+
+## Main features.
+
+- User Management: Users can enhance their communication network through profile management and follow functions.
+- Share Stock Information and Reviews: Users can post stock information, write comments, and engage with other users' content through likes and shares.
+- Real-Time Stock System: The app provides a secure and user-friendly interface for accessing real-time stock lists and charts.
+
+<br>
+
+## Performance Optimisation Updates.
+
+- Implementation of MSA (MicroService Architecture): We've adopted a MicroService Architecture to enhance scalability and maintainability across our services.
+- Integration of API Gateway: An API Gateway has been incorporated to bolster system stability and streamline service management.
+- Introduction of Real-Time Stock Service: To efficiently manage high volumes of traffic, we've introduced a real-time inventory management service.
+<br>
 
 ## Techology.
 
-JDK 17    
+>JDK 17    
 Spring Boot 2.6.7   
 Spring Data JPA   
 Gradle   
