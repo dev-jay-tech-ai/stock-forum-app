@@ -34,25 +34,25 @@ https://documenter.getpostman.com/view/12708271/2sA3JRYywd
 
 ## Main features.
 
-- User Management: Users can enhance their communication network through profile management and follow functions.
-- Share Stock Information and Reviews: Users can post stock information, write comments, and engage with other users' content through likes and shares.
-- Real-Time Stock System: The app provides a secure and user-friendly interface for accessing real-time stock lists and charts.
+- User Management : Users can enhance their communication network through profile management and follow functions.
+- Share Stock Information and Reviews : Users can post stock information, write comments, and engage with other users' content through likes and shares.
+- Real-Time Stock System : The app provides a secure and user-friendly interface for accessing real-time stock lists and charts.
 
 <br>
 
 ## Performance Optimisation Updates.
 
 - Implementation of MSA (MicroService Architecture): We've adopted a MicroService Architecture to enhance scalability and maintainability across our services.
-- Integration of API Gateway: An API Gateway has been incorporated to bolster system stability and streamline service management.
-- Introduction of Real-Time Stock Service: To efficiently manage high volumes of traffic, we've introduced a real-time inventory management service.
+- Integration of API Gateway : An API Gateway has been incorporated to bolster system stability and streamline service management.
+- Introduction of Real-Time Stock Service : To efficiently manage high volumes of traffic, we've introduced a real-time inventory management service.
 - 
 <br>
 
 ## Trouble shooting.
 
-- Issue: Every time an API request is made, it requires reading user data from the database, further contributing to server load.
+- Issue : Every time an API request is made, it requires reading user data from the database, further contributing to server load.
 
-- Solution: To resolve this problem, Redis was implemented to cache frequently accessed member information. This reduces the load on the database and speeds up the retrieval process.
+- Solution : To resolve this problem, Redis was implemented to cache frequently accessed member information. This reduces the load on the database and speeds up the retrieval process.
 By caching user information with Redis, the number of direct database requests is minimised, leading to improved performance and efficiency, especially during API requests.
 <br>
 
