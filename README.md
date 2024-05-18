@@ -10,7 +10,7 @@ The stock forum app serves as a platform where users can share stock information
 
 <br>
 
-## Docker-Compose.
+## Docker-Compose usage.
 ```
 docker-compose up -d
 ```
