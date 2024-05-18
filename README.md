@@ -10,6 +10,12 @@ The stock forum app serves as a platform where users can share stock information
 
 <br>
 
+## Docker-Compose.
+```
+docker-compose up -d
+```
+<br>
+
 ## Process.
 
 https://trello.com/invite/b/yhpSXVVD/ATTI8c6ff83e1049d11d22e29c533c4a413aF23844DF/⚓️-project
