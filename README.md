@@ -45,6 +45,7 @@ https://documenter.getpostman.com/view/12708271/2sA3JRYywd
 - Implementation of MSA (MicroService Architecture): We've adopted a MicroService Architecture to enhance scalability and maintainability across our services.
 - Integration of API Gateway: An API Gateway has been incorporated to bolster system stability and streamline service management.
 - Introduction of Real-Time Stock Service: To efficiently manage high volumes of traffic, we've introduced a real-time inventory management service.
+- 
 <br>
 
 ## Trouble shooting.
@@ -52,7 +53,7 @@ https://documenter.getpostman.com/view/12708271/2sA3JRYywd
 - Issue: Every time an API request is made, it requires reading user data from the database, further contributing to server load.
 
 - Solution: To resolve this problem, Redis was implemented to cache frequently accessed member information. This reduces the load on the database and speeds up the retrieval process.
-By caching user information with Redis, the number of direct database requests is minimized, leading to improved performance and efficiency, especially during API requests.
+By caching user information with Redis, the number of direct database requests is minimised, leading to improved performance and efficiency, especially during API requests.
 <br>
 
 ## Techology.
